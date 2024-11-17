@@ -5,6 +5,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained("bigcode/starcoder2-3b")
 model = AutoModelForCausalLM.from_pretrained("bigcode/starcoder2-3b")
 
+nvim = neovim.attach('socket', path='/tmp/nvim')
+
 @neovim.function('getcompletions', sync=True)
 def getcompletions(line: str) -> str:
     inputs = tokenizer(line, return_tensors="pt")
